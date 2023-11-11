@@ -223,13 +223,22 @@
           <span>Switch User</span>
         </a>
       </li>
-      <li class="dropdown-item py-2">
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+
+        <x-responsive-nav-link :href="route('logout')"
+                onclick="event.preventDefault();
+                            this.closest('form').submit();">
+            {{ __('Log Out') }}
+        </x-responsive-nav-link>
+    </form>
+      {{-- <li class="dropdown-item py-2">
         <a href="{{ route('admin.logout') }}" class="text-body ms-0">
           <i class="me-2 icon-md" data-feather="log-out"></i>
           <span>Log Out</span>
         </a>
       </li>
-    </ul>
+    </ul> --}}
                 </div>
             </li>
         </ul>

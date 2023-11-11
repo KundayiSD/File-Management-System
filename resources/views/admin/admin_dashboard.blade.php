@@ -45,12 +45,28 @@ License: For each use you must have a valid license purchased only from above li
   <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.png') }}" />
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
+  <link rel="stylesheet" href="{{asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css')}}">
 </head>
 <body>
 	<div class="main-wrapper">
 
-		<!-- partial:partials/_sidebar.html -->
-	@include('admin.body.sidebar')
+
+            @if(Auth::user()->role == 'admin')
+                <!-- partial:partials/_sidebar.html -->
+
+            @include('admin.body.sidebar')
+
+            @elseif(Auth::user()->role == 'user')
+
+            @include('user.body.sidebar')
+
+
+            @elseif(Auth::user()->role == 'secretary')
+
+            @include('secretary.body.sidebar')
+
+            @endif
 
 		<!-- partial -->
 
@@ -87,6 +103,9 @@ License: For each use you must have a valid license purchased only from above li
   <script src="{{ asset('backend/assets/js/dashboard-dark.js')}}"></script>
 	<!-- End custom js for this page -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script src="{{asset('backend/assets/vendors/datatables.net/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('backend/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js')}}"></script>
 
 <script>
  @if(Session::has('message'))
